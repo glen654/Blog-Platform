@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user")
 public class UserEntity implements SuperEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     @Column(unique=true)
