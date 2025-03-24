@@ -1,0 +1,13 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /comment-service
+
+spring:
+  application:
+    name: comment-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
