@@ -1,4 +1,5 @@
 package lk.ijse.blogservice.service;
 
-public interface UserService {
+public interface BlogService {
+
 }
