@@ -1,7 +1,9 @@
 package lk.ijse.blogservice.service.impl;
 
 import jakarta.transaction.Transactional;
+import lk.ijse.blogservice.customStatusCodes.SelectedErrorStatus;
 import lk.ijse.blogservice.dao.BlogDao;
+import lk.ijse.blogservice.dto.BlogStatus;
 import lk.ijse.blogservice.dto.impl.BlogDTO;
 import lk.ijse.blogservice.entity.impl.BlogEntity;
 import lk.ijse.blogservice.exception.BlogNotFoundException;
@@ -59,12 +61,24 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public BlogDTO getBlog(String id) {
-        return null;
+    public BlogStatus getBlog(String id) {
+        if(blogDao.existsById(id)){
+            var selectedBlog = blogDao.getReferenceById(id);
+            return mapping.toBlogDTO(selectedBlog);
+        }else {
+            return new SelectedErrorStatus(2,"Selected Blog Not Found");
+        }
     }
 
     @Override
-    public List<BlogDTO> getAllBlogs(String tag) {
-        return List.of();
+    public List<BlogDTO> getAllBlogsByTag(String tag) {
+        List<BlogEntity> foundedBlogs = blogDao.findBlogByTag(tag);
+        return mapping.toBlogDTOList(foundedBlogs);
+    }
+
+    @Override
+    public List<BlogDTO> getAllBlogs() {
+        List<BlogEntity> allBlogs = blogDao.findAll();
+        return mapping.toBlogDTOList(allBlogs);
     }
 }
