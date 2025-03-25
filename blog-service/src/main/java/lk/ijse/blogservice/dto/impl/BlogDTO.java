@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class BlogDTO implements BlogStatus {
-    private Long id;
+    private String id;
     private String title;
     private String content;
     private Long authorId;
