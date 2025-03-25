@@ -15,12 +15,11 @@ import java.time.LocalDateTime;
 @Table(name = "comments")
 public class CommentEntity implements SuperEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     @Column(nullable = false)
-    private Long authorId;
+    private String authorId;
     @Column(nullable = false)
-    private Long blogId;
+    private String blogId;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
     @Column(nullable = false)
